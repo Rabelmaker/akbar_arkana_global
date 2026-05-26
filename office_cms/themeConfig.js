@@ -1,0 +1,52 @@
+import { breakpointsVuetifyV3 } from '@vueuse/core'
+import { VIcon } from 'vuetify/components/VIcon'
+import { defineThemeConfig } from '@core'
+import { Skins } from '@core/enums'
+import VerticalNavHeaderArrow from '@images/svg/vertical-nav-header-arrow.svg'
+import logo from '@images/logo.svg?raw'
+import { AppContentLayoutNav, ContentWidth, FooterType, NavbarType } from '@layouts/enums'
+
+export const { themeConfig, layoutConfig } = defineThemeConfig({
+  app: {
+    title: 'Office CMS',
+    logo: h('div', { innerHTML: logo, style: 'line-height:0; color: rgb(var(--v-global-theme-primary))' }),
+    contentWidth: ContentWidth.Boxed,
+    contentLayoutNav: AppContentLayoutNav.Vertical,
+    overlayNavFromBreakpoint: breakpointsVuetifyV3.lg - 1,
+    i18n: {
+      enable: false,
+      defaultLocale: 'en',
+      langConfig: [],
+    },
+    theme: 'system',
+    skin: Skins.Default,
+    iconRenderer: VIcon,
+  },
+  navbar: {
+    type: NavbarType.Sticky,
+    navbarBlur: true,
+  },
+  footer: {
+    type: FooterType.Static,
+  },
+  verticalNav: {
+    isVerticalNavCollapsed: false,
+    defaultNavItemIconProps: {
+      icon: 'ri-circle-fill',
+    },
+    isVerticalNavSemiDark: false,
+  },
+  horizontalNav: {
+    type: 'sticky',
+    transition: 'slide-y-reverse-transition',
+    popoverOffset: 4,
+  },
+  icons: {
+    chevronDown: { icon: 'ri-arrow-down-s-line' },
+    chevronRight: { icon: 'ri-arrow-right-s-line' },
+    close: { icon: 'ri-close-line' },
+    verticalNavPinned: { icon: h(VerticalNavHeaderArrow) },
+    verticalNavUnPinned: { icon: h(VerticalNavHeaderArrow) },
+    sectionTitlePlaceholder: { icon: 'ri-subtract-line' },
+  },
+})
